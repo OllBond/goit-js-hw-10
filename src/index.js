@@ -1,7 +1,7 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import debounce from 'lodash.debounce';
 // іменований імпорт функції
 import { fetchCountries } from './fetchCountries';
-import debounce from 'lodash.debounce';
 import './css/styles.css';
 
 const DEBOUNCE_DELAY = 300;
@@ -17,7 +17,9 @@ refs.inputRef.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 
 function onInput(e) {
   e.preventDefault();
-  inputValue = e.target.value.trim('');
+  // дані з інпута
+  inputValue = e.target.value.trim();
+  console.log(inputValue);
   // if (inputValue === '') {
   // }
 }
