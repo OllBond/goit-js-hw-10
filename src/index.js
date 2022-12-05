@@ -26,8 +26,20 @@ function onInput(e) {
   // якщо не пустий рядок викликаємо функцію fetchСountries
   // передаємо значення яке ввів користувач inputValue
   fetchCountries(inputValue)
+    // отримали дані resonse, прописуємо логіку, що робити з цими даними
+    // т.ч. можемо перевикористовувати функцію
     .then(res => {
-      console.log(res);
+      // console.log(res);
+      const resLength = res.length;
+      // якщо один об'єкт відмальовауємо картку однієї країни
+      if (resLength === 1) {
+      }
+      // якщо 2 об'єкти або або 10 або менше 10 - малюємо список країн
+      if (resLength > 2 && resLength <= 10) {
+      }
+      // якщо більше 10 об'єктів(країн) виводити рядок
+      if (resLength < 10) {
+      }
     })
     .catch(error => {
       console.log(error);

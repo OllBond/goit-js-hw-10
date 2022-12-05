@@ -9,7 +9,7 @@ export function fetchCountries(name) {
     console.log(response);
     // якщо response.ok true
     if (response.ok) {
-      // повкртаємо розпарсений об'єкт
+      // повертаємо розпарсений об'єкт
       return response.json();
     }
     throw new Error(response.statusText);
