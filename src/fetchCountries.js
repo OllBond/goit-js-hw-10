@@ -1,19 +1,20 @@
-import axios from 'axios';
+// import axios from 'axios';
 
+const BASE_URL = 'https://restcountries.com/v3.1/name/';
 // іменований експорт функції
 export function fetchCountries(name) {
   return fetch(
-    `https://restcountries.com/v3.1/name/${name}?fields=name.official,capital,population,flags.svg,languages`
-  )
-    .then(response => {
+    `${BASE_URL}${name}?fields=name.official,capital,population,flags.svg,languages`
+  ).then(response => {
+    console.log(response);
+    // якщо response.ok true
+    if (response.ok) {
+      // повкртаємо розпарсений об'єкт
       return response.json();
-    })
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.log(error);
-    });
+    }
+    throw new Error(response.statusText);
+  });
+
   // axios
   // return axios
   //   .get(
