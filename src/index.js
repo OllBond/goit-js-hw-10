@@ -26,14 +26,14 @@ function onInput(e) {
   // якщо не пустий рядок викликаємо функцію fetchСountries
   // передаємо значення яке ввів користувач inputValue
   fetchCountries(inputValue)
-    // отримали дані resonse, прописуємо логіку, що робити з цими даними
+    // отримали дані response, прописуємо логіку, що робити з цими даними
     // т.ч. можемо перевикористовувати функцію
     .then(res => {
       // console.log(res);
       const resLength = res.length;
       // якщо один об'єкт відмальовуємо картку однієї країни
       if (resLength === 1) {
-        createoneCountryMarkup(countries);
+        createOneCountryMarkup(countries);
         return;
       }
       // якщо 2 об'єкти або або 10 або менше 10 - малюємо список країн
@@ -41,24 +41,20 @@ function onInput(e) {
       }
       // якщо більше 10 об'єктів(країн) виводити рядок
       if (resLength < 10) {
-        Notify.info(
-          'Too many matches found. Please enter a more specific name.'
-        );
+        // Notify.info(
+        //   'Too many matches found. Please enter a more specific name.'
+        // );
       }
     })
     .catch(error => {
       console.log(error);
     });
 }
-// тут неправильно
-const markupOneCountry = createoneCountryMarkup(countries);
 
-refs.countryInfoRef.insertAdjacentHTML('beforeend', markupOneCountry);
-
-function createoneCountryMarkup(countries) {
-  return countries
+function createOneCountryMarkup(countries) {
+  const markup = countries
     .map(country => {
-      return `
+      `
       <div class="country-info"><img class="country-info-flag" scr="${country.flags.svg}"
      alt="flag"/><h1 class="country-info-name">${country.name.official}</h1></div>
      <ul class="country-list">
@@ -75,44 +71,9 @@ function createoneCountryMarkup(countries) {
      <span class="country-info-value">${country.languages}</span>
      </li>
      </ul>`;
+      console.log(markup);
     })
     .join('');
+
+  refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
 }
-
-// const newPicturesMarkup = createNewGallaryItems(galleryItems);
-
-// galleryContainer.insertAdjacentHTML("beforeend", newPicturesMarkup);
-
-// function pictures ({ preview, original, description }) {
-//   return `
-// <li class="gallery__item">
-// <a class="gallery__link" href="${original}">
-// <img
-//   class="gallery__image"
-//   src="${preview}"
-//   data-source="${original}"
-//   alt="${description}"
-// />
-// </a>
-// </li>
-// `;
-// }
-
-// function createNewGallaryItems(pictures) {
-//   return pictures
-//     .map(({ preview, original, description }) => {
-//       return `
-// <li class="gallery__item">
-//   <a class="gallery__link" href="${original}">
-//     <img
-//       class="gallery__image"
-//       src="${preview}"
-//       data-source="${original}"
-//       alt="${description}"
-//     />
-//   </a>
-// </li>
-// `;
-//     })
-//     .join("");
-// }
