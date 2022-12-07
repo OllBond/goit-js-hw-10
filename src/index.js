@@ -53,8 +53,9 @@ function onInput(e) {
 
 function createOneCountryMarkup(countries) {
   const markup = countries
-    .map(country => {
-      `
+    .map(
+      country =>
+        `
       <div class="country-info">
       <img class="country-info-flag" src="${country.flags.svg}"
      alt="flag">
@@ -71,13 +72,14 @@ function createOneCountryMarkup(countries) {
      </li>
      <li>
      <p class="country-info-item">Languages: </p>
-     <span class="country-info-value">${country.languages}</span>
+     <span class="country-info-value">${Object.values(country.languages).join(
+       ','
+     )}</span>
      </li>
-     </ul>`;
-      // console.log(markup);
-    })
+     </ul>`
+    )
     .join('');
-
+  console.log(markup);
   refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
 }
 
