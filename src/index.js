@@ -77,3 +77,8 @@ function createOneCountryMarkup(countries) {
 
   refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
 }
+
+function clearMarkup() {
+  refs.listRef.innerHTML = '';
+  refs.countryInfoRef.innerHTML = '';
+}
