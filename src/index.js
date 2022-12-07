@@ -29,11 +29,11 @@ function onInput(e) {
     // отримали дані response, прописуємо логіку, що робити з цими даними
     // т.ч. можемо перевикористовувати функцію
     .then(res => {
-      // console.log(res);
+      console.log(res);
       const resLength = res.length;
       // якщо один об'єкт відмальовуємо картку однієї країни
       if (resLength === 1) {
-        createOneCountryMarkup(countries);
+        createOneCountryMarkup(res);
         return;
       }
       // якщо 2 об'єкти або або 10 або менше 10 - малюємо список країн
@@ -55,8 +55,11 @@ function createOneCountryMarkup(countries) {
   const markup = countries
     .map(country => {
       `
-      <div class="country-info"><img class="country-info-flag" scr="${country.flags.svg}"
-     alt="flag"/><h1 class="country-info-name">${country.name.official}</h1></div>
+      <div class="country-info">
+      <img class="country-info-flag" src="${country.flags.svg}"
+     alt="flag">
+     <h1 class="country-info-name">${country.name.official}</h1>
+     </div>
      <ul class="country-list">
      <li>
      <p class="country-info-item">Capital: </p>
@@ -71,7 +74,7 @@ function createOneCountryMarkup(countries) {
      <span class="country-info-value">${country.languages}</span>
      </li>
      </ul>`;
-      console.log(markup);
+      // console.log(markup);
     })
     .join('');
 
