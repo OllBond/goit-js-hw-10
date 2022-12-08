@@ -33,21 +33,28 @@ function onInput(e) {
       const resLength = res.length;
       // якщо один об'єкт відмальовуємо картку однієї країни
       if (resLength === 1) {
+        clearInput();
         createOneCountryMarkup(res);
         return;
       }
       // якщо 2 об'єкти або або 10 або менше 10 - малюємо список країн
       if (resLength > 2 && resLength <= 10) {
+        clearInput();
+        createCountriesList(res);
+        return;
       }
       // якщо більше 10 об'єктів(країн) виводити рядок
       if (resLength < 10) {
-        // Notify.info(
-        //   'Too many matches found. Please enter a more specific name.'
-        // );
+        clearInput();
+        Notify.info(
+          'Too many matches found. Please enter a more specific name.'
+        );
       }
     })
     .catch(error => {
+      clearInput();
       console.log(error);
+      Notify.failure('Oops, there is no country with that name');
     });
 }
 
@@ -63,27 +70,38 @@ function createOneCountryMarkup(countries) {
      </div>
      <ul class="country-list">
      <li>
-     <p class="country-info-item">Capital: </p>
-     <span class="country-info-value">${country.capital}</span>
+     <p>Capital: </p>
+     <span>${country.capital}</span>
      </li>
      <li>
-     <p class="country-info-item">Population: </p>
-     <span class="country-info-value">${country.population}</span>
+     <p>Population: </p>
+     <span>${country.population}</span>
      </li>
      <li>
-     <p class="country-info-item">Languages: </p>
-     <span class="country-info-value">${Object.values(country.languages).join(
-       ','
-     )}</span>
+     <p>Languages: </p>
+     <span>${Object.values(country.languages).join(',')}</span>
      </li>
      </ul>`
     )
     .join('');
-  console.log(markup);
+  // console.log(markup);
   refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
 }
 
-function clearMarkup() {
+function createCountriesList(countries) {
+  const markup = countries
+    .map(
+      country => `<li class="country-item">
+  <img class="country-flag" src="${country.flags.svg}" alt="flag">
+  <p class="country-name">${country.name.official}</p>
+  </li>`
+    )
+    .join('');
+  console.log(markup);
+  refs.listRef.insertAdjacentHTML('beforeend', markup);
+}
+
+function clearInput() {
   refs.listRef.innerHTML = '';
   refs.countryInfoRef.innerHTML = '';
 }
