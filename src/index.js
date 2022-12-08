@@ -44,7 +44,7 @@ function onInput(e) {
         return;
       }
       // якщо більше 10 об'єктів(країн) виводити рядок
-      if (resLength < 10) {
+      if (resLength > 10) {
         clearInput();
         Notify.info(
           'Too many matches found. Please enter a more specific name.'
@@ -66,7 +66,7 @@ function createOneCountryMarkup(countries) {
         `
       <div class="country-info">
       <img class="country-info-flag" src="${country.flags.svg}"
-     alt="flag">
+     alt="flag" width='50' hight='20'>
      <h1 class="country-info-name">${country.name.official}</h1>
      </div>
      <ul class="country-list">
@@ -93,7 +93,7 @@ function createCountriesList(countries) {
   const markup = countries
     .map(
       country => `<li class="country-item">
-  <img class="country-flag" src="${country.flags.svg}" alt="flag">
+  <img class="country-flag" src="${country.flags.svg}" alt="flag" width='50' hight='20'>
   <p class="country-name">${country.name.official}</p>
   </li>`
     )
