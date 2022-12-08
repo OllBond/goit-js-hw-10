@@ -70,16 +70,16 @@ function createOneCountryMarkup(countries) {
      <h1 class="country-info-name">${country.name.official}</h1>
      </div>
      <ul class="country-list">
-     <li>
+     <li class="country-list-item">
      <p>Capital: </p>
-     <span>${country.capital}</span>
+     <span class="country-list-span">${country.capital}</span>
      </li>
-     <li>
-     <p>Population: </p>
+     <li class="country-list-item">
+     <p country-list-span>Population: </p>
      <span>${country.population}</span>
      </li>
-     <li>
-     <p>Languages: </p>
+     <li class="country-list-item">
+     <p country-list-span>Languages: </p>
      <span>${Object.values(country.languages).join(',')}</span>
      </li>
      </ul>`
@@ -92,7 +92,7 @@ function createOneCountryMarkup(countries) {
 function createCountriesList(countries) {
   const markup = countries
     .map(
-      country => `<li class="country-item">
+      country => `<li class="country-list-item">
   <img class="country-flag" src="${country.flags.svg}" alt="flag" width='50' hight='20'>
   <p class="country-name">${country.name.official}</p>
   </li>`
