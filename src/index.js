@@ -45,7 +45,6 @@ function onInput(e) {
       }
       // якщо більше 10 об'єктів(країн) виводити рядок
       if (resLength > 10) {
-        clearInput();
         Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );
