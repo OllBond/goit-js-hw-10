@@ -70,16 +70,18 @@ function createOneCountryMarkup(countries) {
      </div>
      <ul class="country-list">
      <li class="country-list-item">
-     <p>Capital: </p>
+     <p class="country-list-signs">Capital: </p>
      <span class="country-list-span">${country.capital}</span>
      </li>
      <li class="country-list-item">
-     <p country-list-span>Population: </p>
-     <span>${country.population}</span>
+     <p class="country-list-signs">Population: </p>
+     <span class="country-list-span">${country.population}</span>
      </li>
      <li class="country-list-item">
-     <p country-list-span>Languages: </p>
-     <span>${Object.values(country.languages).join(',')}</span>
+     <p class="country-list-signs">Languages: </p>
+     <span class="country-list-span">${Object.values(country.languages).join(
+       ','
+     )}</span>
      </li>
      </ul>`
     )
