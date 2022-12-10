@@ -18,6 +18,8 @@ refs.inputRef.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY));
 function onInput(e) {
   // дані з інпута
   const inputValue = e.target.value.trim();
+  // очищаємо розмітку
+  clearInput();
   // якщо пустий рядок false за допомогою інверсії змінюємо на true
   // тобто якщо пустий рядок - вийшли з функції
   if (!inputValue) {
@@ -33,14 +35,14 @@ function onInput(e) {
       const resLength = res.length;
       // якщо один об'єкт відмальовуємо картку однієї країни
       if (resLength === 1) {
-        clearInput();
-        createOneCountryMarkup(res);
+        const markup = createOneCountryMarkup(res);
+        refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
         return;
       }
       // якщо 2 об'єкти або або 10 або менше 10 - малюємо список країн
       if (resLength > 2 && resLength <= 10) {
-        clearInput();
-        createCountriesList(res);
+        const markup = createCountriesList(res);
+        refs.listRef.insertAdjacentHTML('beforeend', markup);
         return;
       }
       // якщо більше 10 об'єктів(країн) виводити рядок
@@ -57,9 +59,9 @@ function onInput(e) {
       Notify.failure('Oops, there is no country with that name');
     });
 }
-
-function createOneCountryMarkup(countries) {
-  const markup = countries
+// дефолтне значення вказуємо пустий масив, щоб не було помилки
+function createOneCountryMarkup(countries = []) {
+  return countries
     .map(
       country =>
         `
@@ -86,12 +88,11 @@ function createOneCountryMarkup(countries) {
      </ul>`
     )
     .join('');
-  // console.log(markup);
-  refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
+  // refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
 }
 
-function createCountriesList(countries) {
-  const markup = countries
+function createCountriesList(countries = []) {
+  return countries
     .map(
       country => `<li class="country-list-item">
   <img class="country-flag" src="${country.flags.svg}" alt="flag" width='30' hight='20'>
@@ -99,8 +100,7 @@ function createCountriesList(countries) {
   </li>`
     )
     .join('');
-  console.log(markup);
-  refs.listRef.insertAdjacentHTML('beforeend', markup);
+  // refs.listRef.insertAdjacentHTML('beforeend', markup);
 }
 
 function clearInput() {
