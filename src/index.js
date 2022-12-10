@@ -88,7 +88,6 @@ function createOneCountryMarkup(countries = []) {
      </ul>`
     )
     .join('');
-  // refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
 }
 
 function createCountriesList(countries = []) {
@@ -100,9 +99,9 @@ function createCountriesList(countries = []) {
   </li>`
     )
     .join('');
-  // refs.listRef.insertAdjacentHTML('beforeend', markup);
 }
 
+// функція очистки інпуту
 function clearInput() {
   refs.listRef.innerHTML = '';
   refs.countryInfoRef.innerHTML = '';
