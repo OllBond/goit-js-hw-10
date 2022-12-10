@@ -39,7 +39,7 @@ function onInput(e) {
         refs.countryInfoRef.insertAdjacentHTML('beforeend', markup);
         return;
       }
-      // якщо 2 об'єкти або або 10 або менше 10 - малюємо список країн
+      // якщо 2 об'єкти або 10 або менше 10 - малюємо список країн
       if (resLength > 2 && resLength <= 10) {
         const markup = createCountriesList(res);
         refs.listRef.insertAdjacentHTML('beforeend', markup);
